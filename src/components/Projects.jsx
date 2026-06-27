@@ -9,7 +9,7 @@ const projects = [
     image: 'https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=800&q=80',
     tags: ['React', 'Vite', 'Firebase', 'Firestore', 'PayPal API', 'Pollinations AI', 'Firebase Auth'],
     github: 'https://github.com/sujilsubrahmanian',
-    live: null,
+    live: 'https://ai-based-hospital-booking-system.vercel.app',
     highlights: ['AI Chatbot (Pollinations API)', 'Role-Based Auth', 'PayPal Gateway', 'Real-time Firestore DB', 'Admin Panel'],
   },
   {
