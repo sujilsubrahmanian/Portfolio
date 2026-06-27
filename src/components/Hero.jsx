@@ -81,7 +81,7 @@ export default function Hero() {
 
         {/* CTA buttons */}
         <div style={fadeStyle(0.46)} className="flex flex-wrap gap-2.5 mb-16">
-          <a href="https://drive.google.com/file/d/1oj7iwq0NRwMMoI3QQIRE0mLj5XuX0h6b/view?usp=sharing"
+          <a href="https://drive.google.com/uc?export=download&id=197HOrfwkqcSZFvyCktguVAS18RUsRVHg"
              target="_blank" rel="noreferrer" className="btn btn-secondary">
             ↓ Resume
           </a>
