@@ -42,7 +42,7 @@ export default function Hero() {
         {/* Name */}
         <div style={fadeStyle(0.12)} className="mb-2.5 leading-none">
           <h1 className="font-display font-extrabold tracking-[-0.04em] leading-[0.92] text-text whitespace-nowrap"
-              style={{ fontSize: 'clamp(4rem, 10.5vw, 9rem)' }}>
+              style={{ fontSize: 'clamp(4rem, 8.5vw, 9rem)' }}>
             SUJIL <span className="text-accent">S</span>
           </h1>
         </div>
@@ -53,7 +53,7 @@ export default function Hero() {
             <React.Fragment key={role}>
               {i > 0 && <span className="w-1 h-1 rounded-full bg-accent flex-shrink-0" />}
               <span className="font-display font-semibold text-text-2 tracking-[-0.01em]"
-                    style={{ fontSize: 'clamp(1rem, 2vw, 1.35rem)' }}>
+                    style={{ fontSize: 'clamp(1rem, 1.4vw, 1.35rem)' }}>
                 {role}
               </span>
             </React.Fragment>
