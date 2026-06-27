@@ -34,7 +34,6 @@ export default function Hero() {
 
         {/* Greeting */}
         <div style={fadeStyle(0.05)} className="flex items-center gap-2.5 mb-4">
-          <span className="text-[1.1rem]">👋</span>
           <span className="font-sans text-[clamp(0.9rem,1.4vw,1.05rem)] font-normal text-text-2 tracking-[0.01em]">
             Hey there! I'm
           </span>

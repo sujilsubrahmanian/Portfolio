@@ -83,7 +83,7 @@ export default function Skills() {
 
             <div className="flex flex-col gap-4">
               {groups[active].items.map((item, j) => (
-                <SkillBar key={item} item={item} level={groups[active].levels[j]} />
+                <SkillBar key={item} item={item} />
               ))}
             </div>
 
@@ -99,24 +99,25 @@ export default function Skills() {
   )
 }
 
-function SkillBar({ item, level }) {
+function SkillBar({ item }) {
   const [ready, setReady] = React.useState(false)
+
   React.useEffect(() => {
+    setReady(false)
     const t = setTimeout(() => setReady(true), 50)
     return () => clearTimeout(t)
-  }, [])
+  }, [item])
 
   return (
     <div>
       <div className="flex justify-between mb-1.5">
         <span className="text-[0.875rem] font-medium text-text">{item}</span>
-        <span className="text-[0.7rem] font-mono text-text-3">{level}%</span>
       </div>
       <div className="h-1 bg-white/[0.05] rounded-full overflow-hidden">
         <div
           className="h-full rounded-full transition-all duration-700 ease-out"
           style={{
-            width: ready ? `${level}%` : '0%',
+            width: ready ? '100%' : '0%',
             background: 'linear-gradient(90deg, #e8673c, #f08050)',
           }}
         />
