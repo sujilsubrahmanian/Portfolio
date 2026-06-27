@@ -9,20 +9,33 @@
     padding: 0;
   }
 
-  html { scroll-behavior: smooth; }
+  :root {
+    --accent: #e8673c;
+    --accent2: #f08050;
+    --accent-dim: rgba(232,103,60,0.10);
+    --accent-border: rgba(232,103,60,0.25);
+    --green: #3db88a;
+    --blue: #4a90d9;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
 
   body {
-    background-color: #0c0c0c;
-    color: #f0ede8;
-    font-family: 'DM Sans', sans-serif;
+    @apply bg-bg text-text font-sans text-base leading-relaxed;
     -webkit-font-smoothing: antialiased;
     overflow-x: hidden;
   }
 
-  ::selection { background: #e8673c; color: #fff; }
+  ::selection {
+    background: #e8673c;
+    color: #fff;
+  }
+
   ::-webkit-scrollbar { width: 4px; }
-  ::-webkit-scrollbar-track { background: #0c0c0c; }
-  ::-webkit-scrollbar-thumb { background: #e8673c; border-radius: 2px; }
+  ::-webkit-scrollbar-track { @apply bg-bg; }
+  ::-webkit-scrollbar-thumb { @apply bg-accent rounded-sm; }
 
   a { color: inherit; text-decoration: none; }
   img { max-width: 100%; display: block; }
@@ -30,136 +43,96 @@
 
 @layer components {
   .container {
-    max-width: 1080px;
-    margin: 0 auto;
-    padding: 0 40px;
+    @apply max-w-container mx-auto px-10;
   }
 
   .section {
-    padding: 112px 0;
-    position: relative;
+    @apply py-28 md:py-20 relative;
   }
 
-  /* Section label — the small uppercase text above headings */
   .section-label {
-    font-family: 'DM Mono', monospace;
-    font-size: 0.68rem;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
-    color: #e8673c;
-    margin-bottom: 12px;
-    display: flex;
-    align-items: center;
-    gap: 10px;
+    @apply font-mono text-[0.68rem] tracking-[0.18em] uppercase text-accent mb-3
+           flex items-center gap-2.5;
   }
   .section-label::before {
     content: '';
-    display: block;
-    width: 22px;
-    height: 1px;
-    background: #e8673c;
+    @apply block w-5 h-px bg-accent;
   }
 
   .section-title {
-    font-family: 'Syne', sans-serif;
-    font-size: clamp(2rem, 4vw, 3rem);
-    font-weight: 700;
-    letter-spacing: -0.02em;
-    line-height: 1.12;
-    margin-bottom: 14px;
-    color: #f0ede8;
+    @apply font-display text-[clamp(2rem,4vw,3rem)] font-bold tracking-tight leading-[1.12] mb-3.5;
   }
   .section-title em {
-    font-style: normal;
-    color: #e8673c;
-    font-weight: 800;
+    @apply not-italic text-accent font-extrabold;
   }
 
   .section-sub {
-    font-size: 1.05rem;
-    color: #8a8880;
-    max-width: 500px;
-    line-height: 1.82;
-    margin-bottom: 56px;
+    @apply text-[1.05rem] text-text-2 max-w-[500px] leading-[1.82] mb-14;
   }
 
   /* Buttons */
   .btn {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    font-family: 'DM Sans', sans-serif;
-    font-size: 0.85rem;
-    font-weight: 500;
-    padding: 10px 22px;
-    border-radius: 8px;
-    cursor: pointer;
-    border: none;
-    transition: all 0.2s ease;
-    text-decoration: none;
+    @apply inline-flex items-center gap-2 font-sans text-sm font-medium tracking-[0.01em]
+           py-2.5 px-5 rounded-lg cursor-pointer border-0 transition-all duration-200;
   }
   .btn-primary {
-    background: #e8673c;
-    color: #fff;
-  }
-  .btn-primary:hover {
-    background: #f08050;
-    transform: translateY(-1px);
-    box-shadow: 0 6px 24px rgba(232,103,60,0.38);
+    @apply bg-accent text-white hover:bg-accent-2 hover:-translate-y-px
+           hover:shadow-[0_6px_24px_rgba(232,103,60,0.38)];
   }
   .btn-outline {
-    background: transparent;
-    border: 1px solid rgba(255,255,255,0.13);
-    color: #8a8880;
+    @apply bg-transparent border border-border-2 text-text-2
+           hover:border-accent hover:text-text;
   }
-  .btn-outline:hover { border-color: #e8673c; color: #f0ede8; }
   .btn-ghost {
-    background: rgba(255,255,255,0.04);
-    color: #8a8880;
-    border: 1px solid rgba(255,255,255,0.07);
+    @apply bg-white/[0.04] text-text-2 border border-border
+           hover:bg-white/[0.08] hover:text-text;
   }
-  .btn-ghost:hover { background: rgba(255,255,255,0.08); color: #f0ede8; }
   .btn-secondary {
-    background: transparent;
-    border: 1.5px solid #e8673c;
-    color: #e8673c;
+    @apply bg-transparent border-[1.5px] border-accent text-accent
+           hover:bg-accent hover:text-white hover:-translate-y-px;
   }
-  .btn-secondary:hover { background: #e8673c; color: #fff; transform: translateY(-1px); }
 
   /* Tag pill */
   .tag {
-    display: inline-flex;
-    align-items: center;
-    font-family: 'DM Mono', monospace;
-    font-size: 0.68rem;
-    padding: 3px 9px;
-    border-radius: 5px;
-    border: 1px solid rgba(255,255,255,0.13);
-    color: #4e4c49;
-    background: rgba(255,255,255,0.03);
-    white-space: nowrap;
+    @apply inline-flex items-center font-mono text-[0.68rem] font-normal
+           py-[3px] px-[9px] rounded-[5px] border border-border-2 text-text-3
+           bg-white/[0.03] whitespace-nowrap;
+  }
+
+  /* Card */
+  .card {
+    @apply bg-card border border-border rounded-[14px]
+           transition-all duration-300
+           hover:border-border-2 hover:-translate-y-1 hover:shadow-[0_24px_64px_rgba(0,0,0,0.7)];
   }
 }
 
-/* Animations */
-@keyframes pulseGlow {
-  0%, 100% { opacity: 0.6; }
-  50% { opacity: 1; }
-}
-@keyframes fadeUp {
-  from { opacity: 0; transform: translateY(22px); }
-  to   { opacity: 1; transform: translateY(0); }
-}
-@keyframes slideDown {
-  from { opacity: 0; transform: translateY(-10px); }
-  to   { opacity: 1; transform: translateY(0); }
-}
+@layer utilities {
+  @keyframes pulseGlow {
+    0%, 100% { opacity: 0.6; }
+    50% { opacity: 1; }
+  }
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(22px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes slideDown {
+    from { opacity: 0; transform: translateY(-10px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
 
-.animate-pulse-glow { animation: pulseGlow 2s ease-in-out infinite; }
-.animate-fade-up    { animation: fadeUp 0.65s ease forwards; }
-.animate-slide-down { animation: slideDown 0.25s ease forwards; }
+  .animate-pulse-glow {
+    animation: pulseGlow 2s ease-in-out infinite;
+  }
+  .animate-fade-up {
+    animation: fadeUp 0.65s ease forwards;
+  }
+  .animate-slide-down {
+    animation: slideDown 0.25s ease forwards;
+  }
 
-@media (max-width: 768px) {
-  .container { padding: 0 20px; }
-  .section   { padding: 80px 0; }
+  @media (max-width: 768px) {
+    .container { @apply px-5; }
+    .section { @apply py-20; }
+  }
 }

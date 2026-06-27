@@ -23,7 +23,14 @@ export default function App() {
       <Navbar scrollY={scrollY} />
       <main>
         <Hero />
+        <About />
+        <Skills />
+        <Projects />
+        <Education />
+        <Achievements />
+        <Contact />
       </main>
+      <Footer />
     </>
   )
 }
