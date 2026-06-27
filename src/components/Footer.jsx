@@ -2,7 +2,7 @@ import React from 'react'
 
 export default function Footer() {
   return (
-    <footer className="border-t border-border py-7">
+    <footer className="py-7" style={{ borderTop: '1px solid rgba(59,130,246,0.10)' }}>
       <div className="container flex items-center justify-between flex-wrap gap-4">
         <span className="font-display text-[1.1rem] font-extrabold text-text tracking-tight">
           SUJIL <span className="text-accent">S</span>
@@ -21,7 +21,7 @@ export default function Footer() {
               href={h}
               target={h.startsWith('http') ? '_blank' : undefined}
               rel="noreferrer"
-              className="text-[0.78rem] text-text-3 transition-colors duration-200 hover:text-text"
+              className="text-[0.78rem] text-text-3 transition-colors duration-200 hover:text-accent"
             >
               {l}
             </a>

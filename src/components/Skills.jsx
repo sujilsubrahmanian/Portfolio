@@ -37,7 +37,7 @@ export default function Skills() {
   const [active, setActive] = useState(0)
 
   return (
-    <section id="skills" className="section border-t border-border">
+    <section id="skills" className="section" style={{ borderTop: '1px solid rgba(59,130,246,0.10)' }}>
       <div className="container">
         <p className="section-label">Skills & Stack</p>
         <h2 className="section-title">Technologies I <em>ship with</em></h2>
@@ -45,34 +45,39 @@ export default function Skills() {
           From CS fundamentals to modern frameworks — the full stack I bring to every project.
         </p>
 
-        <div className="grid grid-cols-1 md:grid-cols-[230px_1fr] gap-3.5">
+        <div className="grid grid-cols-1 md:grid-cols-[200px_1fr] gap-3.5">
 
-          {/* Tab list */}
-          <div className="flex flex-col gap-0.5">
+          {/* Tab list — horizontal scroll on mobile */}
+          <div className="flex md:flex-col gap-1 overflow-x-auto md:overflow-visible pb-2 md:pb-0 -mx-5 px-5 md:mx-0 md:px-0">
             {groups.map((g, i) => (
               <button
                 key={i}
                 onClick={() => setActive(i)}
                 className={`flex items-center gap-2.5 px-3 py-[11px] rounded-lg cursor-pointer
-                            text-left transition-all duration-200 border
+                            text-left transition-all duration-200 border whitespace-nowrap flex-shrink-0
                             ${active === i
-                              ? 'bg-accent/10 border-accent/25 text-accent'
-                              : 'bg-transparent border-transparent text-text-2 hover:bg-white/[0.03] hover:border-border'
+                              ? 'text-accent'
+                              : 'bg-transparent border-transparent text-text-2 hover:bg-white/[0.03]'
                             }`}
+                style={active === i ? {
+                  background: 'rgba(59,130,246,0.10)',
+                  borderColor: 'rgba(59,130,246,0.28)',
+                } : { borderColor: 'transparent' }}
               >
                 <span className="text-[0.95rem]">{g.icon}</span>
                 <span className={`text-[0.86rem] ${active === i ? 'font-semibold font-display' : 'font-normal'}`}>
                   {g.name}
                 </span>
                 {active === i && (
-                  <span className="ml-auto text-accent text-[0.85rem]">›</span>
+                  <span className="ml-auto text-accent text-[0.85rem] hidden md:block">›</span>
                 )}
               </button>
             ))}
           </div>
 
           {/* Content panel */}
-          <div className="bg-card border border-border rounded-xl p-7">
+          <div className="rounded-xl p-5 md:p-7"
+               style={{ background: 'rgba(13,21,37,1)', border: '1px solid rgba(59,130,246,0.12)' }}>
             <div className="flex items-center gap-2.5 mb-6">
               <span className="text-xl">{groups[active].icon}</span>
               <h3 className="font-display text-xl font-bold">{groups[active].name}</h3>
@@ -82,12 +87,13 @@ export default function Skills() {
             </div>
 
             <div className="flex flex-col gap-4">
-              {groups[active].items.map((item, j) => (
+              {groups[active].items.map((item) => (
                 <SkillBar key={item} item={item} />
               ))}
             </div>
 
-            <div className="mt-6 pt-5 border-t border-border flex flex-wrap gap-1.5">
+            <div className="mt-6 pt-5 flex flex-wrap gap-1.5"
+                 style={{ borderTop: '1px solid rgba(59,130,246,0.10)' }}>
               {groups[active].items.map((item) => (
                 <span key={item} className="tag">{item}</span>
               ))}
@@ -113,12 +119,12 @@ function SkillBar({ item }) {
       <div className="flex justify-between mb-1.5">
         <span className="text-[0.875rem] font-medium text-text">{item}</span>
       </div>
-      <div className="h-1 bg-white/[0.05] rounded-full overflow-hidden">
+      <div className="h-1 rounded-full overflow-hidden" style={{ background: 'rgba(59,130,246,0.08)' }}>
         <div
           className="h-full rounded-full transition-all duration-700 ease-out"
           style={{
             width: ready ? '100%' : '0%',
-            background: 'linear-gradient(90deg, #e8673c, #f08050)',
+            background: 'linear-gradient(90deg, #3b82f6, #60a5fa)',
           }}
         />
       </div>

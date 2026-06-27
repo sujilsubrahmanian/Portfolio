@@ -1,22 +1,21 @@
 import React, { useState } from 'react'
 
 const socials = [
-  { label: 'Email',    value: 'sujilsubrahmanian2001@gmail.com', href: 'mailto:sujilsubrahmanian2001@gmail.com', icon: '✉️', color: '#e8673c' },
-  { label: 'GitHub',   value: 'github.com/sujilsubrahmanian',    href: 'https://github.com/sujilsubrahmanian',   icon: '⌨️', color: '#9a9a90' },
-  { label: 'LinkedIn', value: 'linkedin.com/in/sujil--s',         href: 'https://linkedin.com/in/sujil--s',       icon: '💼', color: '#4a90d9' },
-  { label: 'Phone',    value: '+91 8139831540',                  href: 'tel:+918139831540',                      icon: '📞', color: '#3db88a' },
+  { label: 'Email',    value: 'sujilsubrahmanian2001@gmail.com', href: 'mailto:sujilsubrahmanian2001@gmail.com', icon: '✉️', color: '#3b82f6' },
+  { label: 'GitHub',   value: 'github.com/sujilsubrahmanian',    href: 'https://github.com/sujilsubrahmanian',   icon: '⌨️', color: '#8fa8c8' },
+  { label: 'LinkedIn', value: 'linkedin.com/in/sujil--s',        href: 'https://linkedin.com/in/sujil--s',       icon: '💼', color: '#60a5fa' },
+  { label: 'Phone',    value: '+91 8139831540',                  href: 'tel:+918139831540',                      icon: '📞', color: '#22d3a4' },
 ]
 
 export default function Contact() {
   const [form, setForm] = useState({ name: '', email: '', message: '' })
-  const [status, setStatus] = useState(null) // null | 'sending' | 'sent'
+  const [status, setStatus] = useState(null)
 
   const change = (e) => setForm({ ...form, [e.target.name]: e.target.value })
 
   const submit = async (e) => {
     e.preventDefault()
     setStatus('sending')
-
     const subject = encodeURIComponent(`Portfolio message from ${form.name}`)
     const body = encodeURIComponent(
       `Name: ${form.name}\nEmail: ${form.email}\n\nMessage:\n${form.message}`
@@ -26,10 +25,16 @@ export default function Contact() {
     setForm({ name: '', email: '', message: '' })
   }
 
+  const inputStyle = {
+    background: 'rgba(13,21,37,1)',
+    border: '1px solid rgba(59,130,246,0.15)',
+    color: 'inherit',
+  }
+
   return (
-    <section id="contact" className="section border-t border-border relative">
+    <section id="contact" className="section relative" style={{ borderTop: '1px solid rgba(59,130,246,0.10)' }}>
       <div className="absolute top-[20%] -right-[5%] w-[400px] h-[400px] rounded-full pointer-events-none"
-           style={{ background: 'radial-gradient(circle, rgba(232,103,60,0.07) 0%, transparent 70%)' }} />
+           style={{ background: 'radial-gradient(circle, rgba(59,130,246,0.07) 0%, transparent 70%)' }} />
 
       <div className="container relative z-10">
         <p className="section-label">Contact</p>
@@ -38,7 +43,7 @@ export default function Contact() {
           Open to full-time roles, collaborations, and interesting problems. Fill the form or reach out directly.
         </p>
 
-        <div className="grid grid-cols-1 lg:grid-cols-[1fr_340px] gap-10">
+        <div className="grid grid-cols-1 lg:grid-cols-[1fr_320px] gap-8 lg:gap-10">
 
           {/* Form */}
           <form onSubmit={submit} className="flex flex-col gap-5">
@@ -61,10 +66,12 @@ export default function Contact() {
                     required
                     placeholder={f.placeholder}
                     autoComplete={f.autoComplete}
-                    className="w-full px-4 py-3 bg-card border border-border rounded-lg
+                    className="w-full px-4 py-3 rounded-lg
                                text-text font-sans text-[0.9rem] outline-none
-                               transition-colors duration-200
-                               focus:border-accent/60 placeholder:text-text-3"
+                               transition-colors duration-200 placeholder:text-text-3"
+                    style={inputStyle}
+                    onFocus={e => e.target.style.borderColor = 'rgba(59,130,246,0.50)'}
+                    onBlur={e => e.target.style.borderColor = 'rgba(59,130,246,0.15)'}
                   />
                 </div>
               ))}
@@ -81,10 +88,12 @@ export default function Contact() {
                 required
                 rows={5}
                 placeholder="Tell me about your project, role, or opportunity..."
-                className="w-full px-4 py-3 resize-y bg-card border border-border rounded-lg
+                className="w-full px-4 py-3 resize-y rounded-lg
                            text-text font-sans text-[0.9rem] outline-none
-                           transition-colors duration-200
-                           focus:border-accent/60 placeholder:text-text-3"
+                           transition-colors duration-200 placeholder:text-text-3"
+                style={inputStyle}
+                onFocus={e => e.target.style.borderColor = 'rgba(59,130,246,0.50)'}
+                onBlur={e => e.target.style.borderColor = 'rgba(59,130,246,0.15)'}
               />
             </div>
 
@@ -109,7 +118,8 @@ export default function Contact() {
               <SocialCard key={i} s={s} />
             ))}
 
-            <div className="mt-1.5 p-5 bg-accent/[0.04] border border-accent/25 rounded-xl">
+            <div className="mt-1.5 p-5 rounded-xl"
+                 style={{ background: 'rgba(59,130,246,0.04)', border: '1px solid rgba(59,130,246,0.22)' }}>
               <p className="text-[0.88rem] text-text-2 leading-[1.7] mb-3.5">
                 Looking for a <strong className="text-text">full-time role</strong> in full‑stack
                 development, software engineering, or AI-adjacent positions.
@@ -135,11 +145,10 @@ function SocialCard({ s }) {
       href={s.href}
       target={s.href.startsWith('http') ? '_blank' : undefined}
       rel="noreferrer"
-      className="flex items-center gap-3.5 p-[15px_18px] bg-card border border-border
-                 rounded-[10px] transition-all duration-200 no-underline"
+      className="flex items-center gap-3.5 p-[15px_18px] rounded-[10px] transition-all duration-200 no-underline"
       style={{
-        borderColor: hovered ? `${s.color}45` : undefined,
-        background: hovered ? `${s.color}08` : undefined,
+        background: hovered ? `${s.color}08` : 'rgba(13,21,37,1)',
+        border: `1px solid ${hovered ? `${s.color}45` : 'rgba(59,130,246,0.10)'}`,
       }}
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}

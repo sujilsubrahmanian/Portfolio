@@ -29,7 +29,7 @@ const edu = [
 
 export default function Education() {
   return (
-    <section id="education" className="section border-t border-border">
+    <section id="education" className="section" style={{ borderTop: '1px solid rgba(59,130,246,0.10)' }}>
       <div className="container">
         <p className="section-label">Education</p>
         <h2 className="section-title">Academic <em>background</em></h2>
@@ -38,29 +38,32 @@ export default function Education() {
           {edu.map((e, i) => (
             <div
               key={i}
-              className={`p-[26px_28px] border transition-colors duration-200
-                          ${e.current ? 'bg-accent/[0.04] border-accent/25' : 'bg-card border-border'}
+              className={`p-[22px_24px] md:p-[26px_28px] transition-colors duration-200
                           ${i === 0 ? 'rounded-[12px_12px_3px_3px]'
                             : i === edu.length - 1 ? 'rounded-[3px_3px_12px_12px]'
                             : 'rounded-sm'}`}
+              style={{
+                background: e.current ? 'rgba(59,130,246,0.05)' : 'rgba(13,21,37,1)',
+                border: `1px solid ${e.current ? 'rgba(59,130,246,0.25)' : 'rgba(59,130,246,0.10)'}`,
+              }}
             >
               <div className="flex justify-between items-start flex-wrap gap-2.5 mb-2.5">
-                <div>
-                  <h3 className="font-display text-[1.05rem] font-bold text-text mb-1 tracking-[-0.01em]">
+                <div className="flex-1 min-w-0">
+                  <h3 className="font-display text-[1rem] md:text-[1.05rem] font-bold text-text mb-1 tracking-[-0.01em]">
                     {e.degree}
                   </h3>
                   <p className="text-[0.85rem] text-accent font-medium">{e.institution}</p>
                   <p className="text-[0.78rem] text-text-3 mt-0.5 font-mono">📍 {e.location}</p>
                 </div>
-                <div className="flex flex-col items-end gap-1.5">
-                  <span className="font-mono text-[0.72rem] text-text-3 bg-white/[0.05]
-                                   border border-border rounded-[5px] px-2.5 py-[3px]">
+                <div className="flex flex-col items-end gap-1.5 flex-shrink-0">
+                  <span className="font-mono text-[0.72rem] text-text-3 rounded-[5px] px-2.5 py-[3px]"
+                        style={{ background: 'rgba(255,255,255,0.05)', border: '1px solid rgba(59,130,246,0.12)' }}>
                     {e.period}
                   </span>
                   {e.current && (
                     <span className="text-[0.65rem] font-semibold tracking-[0.1em] uppercase
-                                     text-green bg-green/10 border border-green/22
-                                     rounded-[5px] px-2 py-[2px] flex items-center gap-1">
+                                     text-green rounded-[5px] px-2 py-[2px] flex items-center gap-1"
+                          style={{ background: 'rgba(34,211,164,0.10)', border: '1px solid rgba(34,211,164,0.22)' }}>
                       <span className="w-[5px] h-[5px] rounded-full bg-green animate-pulse-glow" />
                       Current
                     </span>

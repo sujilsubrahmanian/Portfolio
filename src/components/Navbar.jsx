@@ -16,9 +16,13 @@ export default function Navbar({ scrollY }) {
     <nav
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         solid
-          ? 'py-3.5 bg-black/[0.92] backdrop-blur-xl border-b border-border'
+          ? 'py-3.5 backdrop-blur-xl border-b'
           : 'py-5 bg-transparent'
       }`}
+      style={solid ? {
+        background: 'rgba(7,11,18,0.94)',
+        borderColor: 'rgba(59,130,246,0.12)',
+      } : {}}
     >
       <div className="container flex items-center justify-between">
         {/* Logo */}
@@ -55,7 +59,7 @@ export default function Navbar({ scrollY }) {
         {/* Hamburger */}
         <button
           onClick={() => setOpen(!open)}
-          className="md:hidden flex flex-col gap-[5px] bg-transparent border-0 cursor-pointer p-1"
+          className="md:hidden flex flex-col gap-[5px] bg-transparent border-0 cursor-pointer p-2"
           aria-label="Toggle menu"
         >
           {[0, 1, 2].map((i) => (
@@ -78,13 +82,14 @@ export default function Navbar({ scrollY }) {
 
       {/* Mobile overlay */}
       {open && (
-        <div className="fixed inset-0 bg-bg/[0.98] flex flex-col items-center justify-center gap-7 z-40 animate-slide-down">
+        <div className="fixed inset-0 flex flex-col items-center justify-center gap-7 z-40 animate-slide-down"
+             style={{ background: 'rgba(7,11,18,0.98)' }}>
           {links.map((l) => (
             <a
               key={l.label}
               href={l.href}
               onClick={() => setOpen(false)}
-              className="text-3xl font-bold text-text font-display tracking-tight"
+              className="text-3xl font-bold text-text font-display tracking-tight hover:text-accent transition-colors"
             >
               {l.label}
             </a>

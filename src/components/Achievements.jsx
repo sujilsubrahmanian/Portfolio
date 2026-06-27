@@ -7,7 +7,7 @@ const achievements = [
     title: 'UGC NET Qualified',
     year: '2024',
     desc: "National eligibility test in Computer Science, conducted by NTA. Qualifies for lectureship and JRF — one of India's most competitive academic qualifications.",
-    color: '#e8673c',
+    color: '#3b82f6',
   },
   {
     icon: '⚙️',
@@ -15,7 +15,7 @@ const achievements = [
     title: 'GATE Qualified',
     year: '2023',
     desc: 'Graduate Aptitude Test in Engineering (CSE) — a gateway to top IITs and PSUs, benchmarking core CS fundamentals at a national level.',
-    color: '#3db88a',
+    color: '#22d3a4',
   },
   {
     icon: '🤖',
@@ -23,7 +23,7 @@ const achievements = [
     title: 'IBM AI Certifications',
     year: '2024',
     desc: '"Getting Started with Artificial Intelligence" (IBM Certificate) and "Artificial Intelligence Fundamentals" (IBM Skills Build Certificate) — both from IBM.',
-    color: '#4a90d9',
+    color: '#60a5fa',
   },
 ]
 
@@ -31,12 +31,12 @@ export default function Achievements() {
   return (
     <>
       {/* Achievements */}
-      <section id="achievements" className="section border-t border-border">
+      <section id="achievements" className="section" style={{ borderTop: '1px solid rgba(59,130,246,0.10)' }}>
         <div className="container">
           <p className="section-label">Achievements</p>
           <h2 className="section-title">Credentials & <em>certifications</em></h2>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-0.5">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-0.5">
             {achievements.map((a, i) => (
               <AchievementCard key={i} a={a} i={i} total={achievements.length} />
             ))}
@@ -45,14 +45,14 @@ export default function Achievements() {
       </section>
 
       {/* Resume CTA */}
-      <section id="resume" className="border-t border-border py-20">
+      <section id="resume" className="py-16 md:py-20" style={{ borderTop: '1px solid rgba(59,130,246,0.10)' }}>
         <div className="container">
-          <div className="relative overflow-hidden rounded-2xl p-10 md:p-11
-                          bg-accent/[0.04] border border-accent/25
-                          grid grid-cols-1 md:grid-cols-[1fr_auto] gap-8 items-center">
+          <div className="relative overflow-hidden rounded-2xl p-8 md:p-11
+                          grid grid-cols-1 md:grid-cols-[1fr_auto] gap-8 items-center"
+               style={{ background: 'rgba(59,130,246,0.04)', border: '1px solid rgba(59,130,246,0.20)' }}>
             {/* Glow */}
             <div className="absolute -top-[20%] right-[5%] w-[280px] h-[280px] rounded-full pointer-events-none"
-                 style={{ background: 'radial-gradient(circle, rgba(232,103,60,0.07), transparent)' }} />
+                 style={{ background: 'radial-gradient(circle, rgba(59,130,246,0.08), transparent)' }} />
 
             <div className="relative">
               <p className="font-mono text-[0.65rem] text-accent tracking-[0.18em] uppercase mb-2.5">
@@ -100,16 +100,20 @@ export default function Achievements() {
 function AchievementCard({ a, i, total }) {
   const [hovered, setHovered] = React.useState(false)
   const radius =
-    i === 0 ? 'rounded-[12px_3px_3px_12px] md:rounded-[12px_3px_3px_12px]'
-    : i === total - 1 ? 'rounded-[3px_12px_12px_3px] md:rounded-[3px_12px_12px_3px]'
+    i === 0 ? 'rounded-[12px_3px_3px_12px] sm:rounded-[12px_3px_3px_12px]'
+    : i === total - 1 ? 'rounded-[3px_12px_12px_3px] sm:rounded-[3px_12px_12px_3px]'
     : 'rounded-sm'
 
   return (
     <div
-      className={`p-6 bg-card border flex flex-col gap-3.5 cursor-default
+      className={`p-6 flex flex-col gap-3.5 cursor-default
                   transition-all duration-[220ms] ${radius}
                   ${hovered ? '-translate-y-[3px] shadow-[0_16px_40px_rgba(0,0,0,0.5)]' : ''}`}
-      style={{ borderColor: hovered ? `${a.color}50` : 'rgba(255,255,255,0.07)' }}
+      style={{
+        background: 'rgba(13,21,37,1)',
+        borderColor: hovered ? `${a.color}50` : 'rgba(59,130,246,0.10)',
+        border: `1px solid ${hovered ? `${a.color}50` : 'rgba(59,130,246,0.10)'}`,
+      }}
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
     >

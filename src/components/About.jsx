@@ -19,12 +19,12 @@ const strengths = [
 
 export default function About() {
   return (
-    <section id="about" className="section border-t border-border">
+    <section id="about" className="section" style={{ borderTop: '1px solid rgba(59,130,246,0.10)' }}>
       <div className="container">
         <p className="section-label">About</p>
         <h2 className="section-title">Building things that <em>matter</em></h2>
 
-        <div className="grid grid-cols-1 lg:grid-cols-[1fr_370px] gap-16 items-start">
+        <div className="grid grid-cols-1 lg:grid-cols-[1fr_370px] gap-10 lg:gap-16 items-start">
 
           {/* Left — bio */}
           <div>
@@ -60,15 +60,16 @@ export default function About() {
             </div>
 
             {/* Strengths */}
-            <div className="p-[18px_22px] bg-bg-2 border border-border rounded-[10px]">
+            <div className="p-[18px_22px] rounded-[10px]"
+                 style={{ background: 'rgba(13,18,32,0.8)', border: '1px solid rgba(59,130,246,0.12)' }}>
               <div className="font-mono text-[0.65rem] text-text-3 tracking-[0.16em] uppercase mb-3">
                 Strengths
               </div>
               <div className="flex gap-1.5 flex-wrap">
                 {strengths.map((s) => (
                   <span key={s}
-                        className="text-[0.78rem] text-text-2 bg-white/[0.04] border border-border
-                                   rounded-md px-2.5 py-1">
+                        className="text-[0.78rem] text-text-2 rounded-md px-2.5 py-1"
+                        style={{ background: 'rgba(59,130,246,0.06)', border: '1px solid rgba(59,130,246,0.14)' }}>
                     {s}
                   </span>
                 ))}
@@ -83,10 +84,10 @@ export default function About() {
             ))}
 
             {/* Status badge */}
-            <div className="mt-2.5 p-[13px_17px] bg-green/[0.06] border border-green/[0.18]
-                            rounded-[10px] flex items-center gap-3">
-              <span className="w-2 h-2 rounded-full bg-green shadow-[0_0_8px_#3db88a]
-                               flex-shrink-0 animate-pulse-glow" />
+            <div className="mt-2.5 p-[13px_17px] rounded-[10px] flex items-center gap-3"
+                 style={{ background: 'rgba(34,211,164,0.06)', border: '1px solid rgba(34,211,164,0.18)' }}>
+              <span className="w-2 h-2 rounded-full bg-green flex-shrink-0 animate-pulse-glow"
+                    style={{ boxShadow: '0 0 8px #22d3a4' }} />
               <div>
                 <div className="text-[0.65rem] text-green font-mono tracking-[0.12em] uppercase">
                   Status
@@ -112,17 +113,18 @@ function FactRow({ f, i, total }) {
 
   return (
     <div
-      className={`flex justify-between items-center p-[13px_17px] bg-card border
-                  transition-all duration-200 ${radius} ${
-                    hovered ? 'border-border-2 bg-white/[0.02]' : 'border-border'
-                  }`}
+      className={`flex justify-between items-center p-[13px_17px] transition-all duration-200 ${radius}`}
+      style={{
+        background: hovered ? 'rgba(59,130,246,0.06)' : 'rgba(13,21,37,1)',
+        border: `1px solid ${hovered ? 'rgba(59,130,246,0.25)' : 'rgba(59,130,246,0.10)'}`,
+      }}
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
     >
       <div className="text-[0.67rem] font-mono text-text-3 tracking-[0.12em] uppercase">
         {f.label}
       </div>
-      <div className="text-[0.84rem] text-text font-medium text-right max-w-[60%] leading-snug">
+      <div className="text-[0.84rem] text-text font-medium text-right max-w-[60%] leading-snug break-words">
         {f.value}
       </div>
     </div>

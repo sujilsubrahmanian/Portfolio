@@ -40,7 +40,7 @@ export default function Projects() {
   const [hov, setHov] = useState(null)
 
   return (
-    <section id="projects" className="section border-t border-border">
+    <section id="projects" className="section" style={{ borderTop: '1px solid rgba(59,130,246,0.10)' }}>
       <div className="container">
         <p className="section-label">Work</p>
         <h2 className="section-title">Projects I've <em>built</em></h2>
@@ -55,28 +55,31 @@ export default function Projects() {
               key={p.id}
               onMouseEnter={() => setHov(i)}
               onMouseLeave={() => setHov(null)}
-              className={`grid grid-cols-1 md:grid-cols-[1fr_300px] overflow-hidden bg-card
-                          border transition-all duration-[220ms] ease-out
+              className={`grid grid-cols-1 md:grid-cols-[1fr_280px] overflow-hidden
+                          transition-all duration-[220ms] ease-out
                           ${i === 0 ? 'rounded-[12px_12px_3px_3px]'
                             : i === projects.length - 1 ? 'rounded-[3px_3px_12px_12px]'
-                            : 'rounded-sm'}
-                          ${hov === i
-                            ? 'border-border-2 -translate-y-0.5 shadow-[0_14px_36px_rgba(0,0,0,0.5)]'
-                            : 'border-border'}`}
+                            : 'rounded-sm'}`}
+              style={{
+                background: 'rgba(13,21,37,1)',
+                border: `1px solid ${hov === i ? 'rgba(59,130,246,0.30)' : 'rgba(59,130,246,0.10)'}`,
+                transform: hov === i ? 'translateY(-2px)' : 'none',
+                boxShadow: hov === i ? '0 14px 36px rgba(0,0,0,0.5)' : 'none',
+              }}
             >
               {/* Text content */}
-              <div className="p-7 md:p-8 flex flex-col justify-between">
+              <div className="p-6 md:p-8 flex flex-col justify-between">
                 <div>
-                  <div className="flex items-center gap-2.5 mb-3">
+                  <div className="flex items-center gap-2.5 mb-3 flex-wrap">
                     <span className="font-mono text-[0.62rem] tracking-[0.12em] uppercase
-                                     text-accent bg-accent/10 border border-accent/25
-                                     rounded-[5px] px-2 py-[3px]">
+                                     rounded-[5px] px-2 py-[3px]"
+                          style={{ color: '#60a5fa', background: 'rgba(59,130,246,0.10)', border: '1px solid rgba(59,130,246,0.25)' }}>
                       {p.subtitle}
                     </span>
                     <span className="font-mono text-[0.62rem] text-text-3">{p.id}</span>
                   </div>
 
-                  <h3 className="font-display text-xl font-bold tracking-[-0.01em] mb-2.5
+                  <h3 className="font-display text-lg md:text-xl font-bold tracking-[-0.01em] mb-2.5
                                   leading-snug text-text">
                     {p.title}
                   </h3>
@@ -88,7 +91,8 @@ export default function Projects() {
                   </div>
                 </div>
 
-                <div className="flex gap-2 pt-4 border-t border-border mt-4">
+                <div className="flex gap-2 pt-4 mt-4 flex-wrap"
+                     style={{ borderTop: '1px solid rgba(59,130,246,0.10)' }}>
                   {p.github && (
                     <a href={p.github} target="_blank" rel="noreferrer"
                        className="btn btn-ghost py-[7px] px-4 text-[0.8rem]">
@@ -109,19 +113,19 @@ export default function Projects() {
                 </div>
               </div>
 
-              {/* Image */}
-              <div className="relative overflow-hidden min-h-[220px]">
+              {/* Image — hidden on very small screens, shown on md+ */}
+              <div className="relative overflow-hidden min-h-[200px] hidden sm:block">
                 <img
                   src={p.image}
                   alt={p.title}
                   className="w-full h-full object-cover transition-all duration-400"
                   style={{
-                    filter: hov === i ? 'brightness(0.7) saturate(1.1)' : 'brightness(0.4) saturate(0.4)',
+                    filter: hov === i ? 'brightness(0.7) saturate(1.1)' : 'brightness(0.35) saturate(0.3)',
                     transform: hov === i ? 'scale(1.05)' : 'scale(1)',
                   }}
                 />
                 <div className="absolute inset-0 flex flex-col justify-end p-4"
-                     style={{ background: 'linear-gradient(to top, rgba(12,12,12,0.75) 0%, transparent 55%)' }}>
+                     style={{ background: 'linear-gradient(to top, rgba(7,11,18,0.85) 0%, transparent 55%)' }}>
                   {p.highlights.map((h) => (
                     <span key={h}
                           className="text-[0.7rem] text-white/80 font-mono flex items-center gap-1.5 leading-[1.9]">

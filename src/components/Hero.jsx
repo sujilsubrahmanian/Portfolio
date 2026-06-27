@@ -21,14 +21,18 @@ export default function Hero() {
     <section
       id="hero"
       className="min-h-screen flex items-center relative overflow-hidden"
-      style={{ padding: '140px 0 120px' }}
+      style={{
+        padding: '140px 0 160px',
+        background: 'linear-gradient(135deg, #070b12 0%, #0d1525 50%, #0a1628 100%)',
+      }}
     >
-      {/* Ambient glows */}
-      <div className="absolute -top-[5%] -right-[5%] w-[600px] h-[600px] rounded-full pointer-events-none"
-           style={{ background: 'radial-gradient(circle, rgba(232,103,60,0.07) 0%, transparent 62%)' }} />
-      <div className="absolute bottom-[5%] -left-[8%] w-[400px] h-[400px] rounded-full pointer-events-none"
-           style={{ background: 'radial-gradient(circle, rgba(74,144,217,0.04) 0%, transparent 65%)' }} />
-      <div className="absolute bottom-0 left-0 right-0 h-px bg-border" />
+      {/* Blue ambient glows */}
+      <div className="absolute -top-[5%] -right-[5%] w-[700px] h-[700px] rounded-full pointer-events-none"
+           style={{ background: 'radial-gradient(circle, rgba(59,130,246,0.10) 0%, transparent 62%)' }} />
+      <div className="absolute bottom-[10%] -left-[8%] w-[500px] h-[500px] rounded-full pointer-events-none"
+           style={{ background: 'radial-gradient(circle, rgba(96,165,250,0.06) 0%, transparent 65%)' }} />
+      <div className="absolute top-[40%] left-[30%] w-[400px] h-[400px] rounded-full pointer-events-none"
+           style={{ background: 'radial-gradient(circle, rgba(59,130,246,0.04) 0%, transparent 70%)' }} />
 
       <div className="container relative z-10 w-full">
 
@@ -41,8 +45,8 @@ export default function Hero() {
 
         {/* Name */}
         <div style={fadeStyle(0.12)} className="mb-2.5 leading-none">
-          <h1 className="font-display font-extrabold tracking-[-0.04em] leading-[0.92] text-text whitespace-nowrap"
-              style={{ fontSize: 'clamp(4rem, 8.5vw, 9rem)' }}>
+          <h1 className="font-display font-extrabold tracking-[-0.04em] leading-[0.92] text-text"
+              style={{ fontSize: 'clamp(3.2rem, 8.5vw, 9rem)' }}>
             SUJIL <span className="text-accent">S</span>
           </h1>
         </div>
@@ -53,7 +57,7 @@ export default function Hero() {
             <React.Fragment key={role}>
               {i > 0 && <span className="w-1 h-1 rounded-full bg-accent flex-shrink-0" />}
               <span className="font-display font-semibold text-text-2 tracking-[-0.01em]"
-                    style={{ fontSize: 'clamp(1rem, 1.4vw, 1.35rem)' }}>
+                    style={{ fontSize: 'clamp(0.9rem, 1.4vw, 1.35rem)' }}>
                 {role}
               </span>
             </React.Fragment>
@@ -96,10 +100,11 @@ export default function Hero() {
         </div>
 
         {/* Stats */}
-        <div style={fadeStyle(0.54)}
-             className="flex gap-0 pt-7 border-t border-border max-w-[480px]">
+        <div style={{ ...fadeStyle(0.54), borderColor: 'rgba(59,130,246,0.15)' }}
+             className="flex gap-0 pt-7 border-t max-w-[480px] flex-wrap sm:flex-nowrap">
           {stats.map((s, i) => (
-            <div key={i} className={`flex-1 pr-4 mr-4 ${i < 3 ? 'border-r border-border' : ''}`}>
+            <div key={i} className={`flex-1 pr-4 mr-4 min-w-[80px] ${i < 3 ? 'border-r' : ''}`}
+                 style={{ borderColor: 'rgba(59,130,246,0.15)' }}>
               <div className="font-display text-[2rem] font-extrabold text-accent leading-none">
                 {s.num}
               </div>
@@ -110,9 +115,25 @@ export default function Hero() {
       </div>
 
       {/* Scroll indicator */}
-      <div className="absolute bottom-6 left-1/2 -translate-x-1/2 flex flex-col items-center gap-1.5">
+      <div className="absolute bottom-6 left-1/2 -translate-x-1/2 flex flex-col items-center gap-1.5 z-10">
         <span className="text-[0.6rem] text-text-3 tracking-[0.15em] uppercase font-mono">scroll</span>
-        <div className="w-px h-7" style={{ background: 'linear-gradient(to bottom, #e8673c, transparent)' }} />
+        <div className="w-px h-7" style={{ background: 'linear-gradient(to bottom, #3b82f6, transparent)' }} />
+      </div>
+
+      {/* Diagonal color break at the bottom — like abhijith.dev */}
+      <div
+        className="absolute bottom-0 left-0 right-0 pointer-events-none"
+        style={{ height: '120px', zIndex: 5 }}
+      >
+        {/* Dark wedge cutting in from bottom-right */}
+        <svg
+          viewBox="0 0 1440 120"
+          xmlns="http://www.w3.org/2000/svg"
+          preserveAspectRatio="none"
+          style={{ width: '100%', height: '100%', display: 'block' }}
+        >
+          <polygon points="0,120 1440,0 1440,120" fill="#070b12" />
+        </svg>
       </div>
     </section>
   )
